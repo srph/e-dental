@@ -26,7 +26,7 @@
 					<td> {{ $user->full_name }} </td>
 					<td> 
 						<a href="#" class="btn btn-primary"> <i class="ion-pencil"></i> </a>
-						<form action="{{ route('dashboard.admin.users.delete') }}">
+						<form action="{{ route('dashboard.admin.users.destroy') }}">
 							<input type="hidden" value="_DELETE">
 							<button type="form" data-delete-id="{{ $user->id }}"> <i class="ion-trash"></i> </button>
 						</form>

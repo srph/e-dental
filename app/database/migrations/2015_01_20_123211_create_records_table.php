@@ -21,6 +21,7 @@ class CreateRecordsTable extends Migration {
 			$table->string('first_name');
 			$table->string('middle_name');
 			$table->string('last_name');
+			$table->string('full_name');
 			$table->timestamps();
 		});
 	}
@@ -32,7 +33,7 @@ class CreateRecordsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('profiles');
+		Schema::dropIfExists('records');
 	}
 
 }

@@ -20,8 +20,8 @@ class CreateProfilesTable extends Migration {
 			$table->string('middle_name');
 			$table->string('last_name');
 			$table->string('full_name');
-			$table->string('address');
-			$table->string('birthdate');
+			$table->string('address')->nullable();
+			$table->timestamp('birthdate');
 			$table->timestamps();
 		});
 	}
