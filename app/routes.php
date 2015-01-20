@@ -11,7 +11,36 @@
 |
 */
 
-Route::get('/', function()
+Route::group(['prefix' => 'dashboard'], function()
 {
-	return View::make('hello');
+	/**
+	 * Administrators
+	 * @link dashboard/administrator/*
+	 */
+	Route::group([
+		'namespace' => 'Administrator',
+		'prefix' => 'administrator'
+	], function()
+	{
+		Route::resource('users', 'UsersController');
+		Route::resource('records', 'RecordsController');
+		Route::resource('schedules', 'SchedulesController');
+	});
+
+
+	// Route::resource('schedules', 'SchedulesController');
+	// Route::resource('schedules', 'SchedulesController');
 });
+
+/**
+ * Authentication
+ * @link auth/*
+ */
+Route::group(['prefix' => 'auth'], function()
+{
+	Route::get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
+	Route::post('login', ['as' => 'auth.login', 'uses' => 'AuthController@postLogin']);
+	Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
+});
+
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);

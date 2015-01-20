@@ -70,6 +70,17 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+/**
+ * Returns 000 page authenticated user is not an admin
+ */
+Route::filter('admin', function()
+{
+	if ( !Auth::check() || !Auth::user()->is_admin )
+	{
+		return View::make('_error.000');
+	}
+});
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
