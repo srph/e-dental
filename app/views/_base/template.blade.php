@@ -8,10 +8,10 @@
 	@yield('style')
 </head>
 <body>
-	@yield('content');
+	@yield('content')
 
 	{{ HTML::script('assets/jquery/dist/jquery.min.js') }}
 	{{ HTML::script('assets/bootstrap/dist/js/bootstrap.min.js') }}
-	@yield('scripts');
+	@yield('scripts')
 </body>
 </html>

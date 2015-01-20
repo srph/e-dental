@@ -1,4 +1,4 @@
-<?php namespace Ki\Validators\User;
+<?php namespace Ki\Validators;
 
 use Ki\Common\AbstractValidator;
 

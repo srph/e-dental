@@ -2,7 +2,7 @@
 
 use Ki\Common\Exceptions\ValidationException;
 
-abstract class AbstractValidation {
+abstract class AbstractValidator {
 
 	/**
 	 * Validation rules

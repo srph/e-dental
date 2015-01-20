@@ -2,7 +2,7 @@
 
 use User;
 use View;
-use Ki\Common\Validators\User as UserValidator;
+use Ki\Validators\User as UserValidator;
 
 class UsersController extends \BaseController {
 
