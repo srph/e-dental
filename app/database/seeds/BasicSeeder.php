@@ -113,7 +113,7 @@ class BasicSeeder extends Seeder {
 		{
 			$db->insert([
 				'id'	=> $i,
-				'name'	=> "{$this->f->firstName} {$this->f->lastName}"
+				'name'	=> ['Cleaning', 'Check-up', 'Surgery', 'Pedriatics', 'Orthodontics', 'Orafacial'][($i % $limit)]
 			]);
 		}
 	}
