@@ -28,21 +28,29 @@ Route::group(['prefix' => 'dashboard'], function()
 	});
 
 	/**
-	 * Administrators
-	 * @link dashboard/administrator/*
+	 * Personal
+	 * @link dashboard/you/*
 	 */
 	Route::group([
 		'namespace' => 'You',
 		'prefix' => 'you'
 	], function()
 	{
-		Route::resource('users', 'UsersController');
 		Route::resource('records', 'RecordsController');
 		Route::resource('schedules', 'SchedulesController');
+
+		/**
+		 * @link dasboard/you/settings/*
+		 */
+		Route::group(['prefix' => 'settings'], function()
+		{
+			Route::get('/', ['as' => 'dashboard.you.settings.index', 'uses' => 'You\DashboardController@index']);
+			Route::put('user', ['as' => 'dashboard.you.settings.user', 'uses' => 'You\DashboardController@user']);
+			Route::put('profile', ['as' => 'dashboard.you.settings.profile', 'uses' => 'You\DashboardController@poofile']);
+		});
 	});
 
-	// Route::resource('schedules', 'SchedulesController');
-	// Route::resource('schedules', 'SchedulesController');
+	Route::get('/', ['as' => 'dashboard.index', 'uses' => 'You\DashboardController@index']);
 });
 
 /**

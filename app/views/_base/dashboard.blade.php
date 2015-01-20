@@ -22,6 +22,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">User Panel</div>
 					<div class="list-group">
+						<a class="list-group-item {{ _active('dashboard.you.dashboard') }}" href="{{ route('dashboard.index') }}">Dashboard</a>
+						<a class="list-group-item {{ _active('dashboard.you.settings') }}" href="{{ route('dashboard.you.settings.index') }}">Settings</a>
 						<a class="list-group-item {{ _active('dashboard.you.schedules') }}" href="{{ route('dashboard.you.schedules.index') }}">Your Schedules</a>
 						<a class="list-group-item {{ _active('dashboard.you.records') }}" href="{{ route('dashboard.you.records.index') }}">Your Records</a>
 					</div>
@@ -38,6 +40,15 @@
 					</div>
 				</div>
 				{{-- @endif --}}
+
+				<div class="panel panel-default">
+					<div class="list-group">
+						<a class="list-group-item" href="{{ route('auth.logout') }}">
+							<i class="ion-close-circled"></i>
+							Logout
+						</a>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-md-8">
