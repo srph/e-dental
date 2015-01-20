@@ -24,7 +24,7 @@
 		}
 
 		.panel {
-			width: 300px;
+			width: 450px;
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -40,13 +40,13 @@
 
 					<div class="panel-body">
 						@if ( Session::has('authentication.error') )
-							<div class="alert alert-danger">
+							<div class="alert alert-danger text-center">
 								{{ Session::get('authentication.error') }}
 							</div>
 						@endif
 
 						@if ( Session::has('authentication.logout') )
-							<div class="alert alert-success">
+							<div class="alert alert-success text-center">
 								{{ Session::get('authentication.logout') }}
 							</div>
 						@endif

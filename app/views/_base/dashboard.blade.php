@@ -29,7 +29,7 @@
 					</div>
 				</div>
 
-				{{-- @if ( Auth::user()->is_admin ) --}}
+				@if ( Auth::user()->is_admin )
 				<div class="panel panel-default">
 					<div class="panel-heading">Administrator Panel</div>
 					<div class="list-group">
@@ -39,7 +39,7 @@
 						<a class="list-group-item {{ _active('dashboard.admin.reports') }}" href="{{ route('dashboard.admin.users.index') }}">Reports</a>
 					</div>
 				</div>
-				{{-- @endif --}}
+				@endif
 
 				<div class="panel panel-default">
 					<div class="list-group">
