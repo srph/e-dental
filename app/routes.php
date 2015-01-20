@@ -27,6 +27,20 @@ Route::group(['prefix' => 'dashboard'], function()
 		Route::resource('schedules', 'SchedulesController');
 	});
 
+	/**
+	 * Administrators
+	 * @link dashboard/administrator/*
+	 */
+	Route::group([
+		'namespace' => 'You',
+		'prefix' => 'you'
+	], function()
+	{
+		Route::resource('users', 'UsersController');
+		Route::resource('records', 'RecordsController');
+		Route::resource('schedules', 'SchedulesController');
+	});
+
 	// Route::resource('schedules', 'SchedulesController');
 	// Route::resource('schedules', 'SchedulesController');
 });

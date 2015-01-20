@@ -9,16 +9,18 @@ function _active($route, $wildcard = true)
 
 	if ( $wildcard )
 	{
-		$pieces = explode($route, '.');
+		$pieces = explode('.', $current);
 
-		$route = array_map(function($piece) use($pieces)
+		$current = implode('.', array_map(function($piece) use($pieces)
 		{
 			if ( $piece !== $pieces[ count($pieces) - 1 ] )
 			{
 				return $piece;
 			}
-		}, $pieces);
+		}, $pieces));
+
+		$current = substr($current, 0, strlen($current) - 1);
 	}
 
-	return $route == $current;
+	return $route == $current ? 'active' : '';
 }

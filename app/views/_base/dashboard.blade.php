@@ -19,21 +19,23 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">User Panel</div>
-					<ul class="list-group">
-						<li class="list-group-item {{ _active('admin.users.index') }}"> <a href="#">Your Records</a></li>
-						<li class="list-group-item {{ _active('admin.users') }}"> <a href="#">Your Schedules</a></li>
-					</ul>
+					<div class="list-group">
+						<a class="list-group-item {{ _active('dashboard.you.schedules') }}" href="{{ route('dashboard.you.schedules.index') }}">Your Schedules</a>
+						<a class="list-group-item {{ _active('dashboard.you.records') }}" href="{{ route('dashboard.you.records.index') }}">Your Records</a>
+					</div>
 				</div>
 
+				{{-- @if ( Auth::user()->is_admin ) --}}
 				<div class="panel panel-default">
 					<div class="panel-heading">Administrator Panel</div>
-					<ul class="list-group">
-						<li class="list-group-item {{ _active('admin.users') }}"> <a href="{{ route('admin.users.index') }}">Manage Users</a></li>
-						<li class="list-group-item {{ _active('admin.users') }}"> <a href="url('dashboard/admin/records')">Manage Records</a></li>
-						<li class="list-group-item {{ _active('admin.users') }}"> <a href="#">Manage Schedules</a></li>
-						<li class="list-group-item {{ _active('admin.users') }}"> <a href="#">Reports</a></li>
-					</ul>
+					<div class="list-group">
+						<a class="list-group-item {{ _active('dashboard.admin.users') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Users</a>
+						<a class="list-group-item {{ _active('dashboard.admin.records') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Records</a>
+						<a class="list-group-item {{ _active('dashboard.admin.schedules') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Schedules</a>
+						<a class="list-group-item {{ _active('dashboard.admin.reports') }}" href="{{ route('dashboard.admin.users.index') }}">Reports</a>
+					</div>
 				</div>
+				{{-- @endif --}}
 			</div>
 
 			<div class="col-md-8">
