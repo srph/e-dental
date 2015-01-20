@@ -3,6 +3,20 @@
 class Record extends Eloquent {
 
 	/**
+	 *
+	 */
+	protected $fillable = array(
+		'user_id',
+		'doctor_id',
+		'schedule_id',
+		'service_id',
+		'first_name',
+		'middle_name',
+		'last_name',
+		'full_name',
+	);
+
+	/**
 	 * 
 	 */
 	public function user()

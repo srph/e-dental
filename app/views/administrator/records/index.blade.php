@@ -5,7 +5,19 @@
 @stop
 
 @section('sub-content')
-	<h1> Manage Records </h1>
+	<div class="clearfix" style="margin-bottom: 20px;">
+		<h1 style="margin-top: 0;" class="pull-left"> Manage Records </h1>
+		<a href="#" class="btn btn-info pull-right">
+			<i class="ion-document"></i>
+			Create New Record
+		</a>
+	</div>
+
+	@if ( Session::has('administrator.records.create.success') )
+		<div class="alert alert-success">
+			{{ Session::get('administrator.records.create.success') }}
+		</div>
+	@endif
 
 	@if ( count($records) )
 	<table class="table table-hover">

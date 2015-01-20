@@ -3,8 +3,15 @@
 use Auth;
 use View;
 use Records;
+use Ki\Validators\Record as RecordValidator;
+use Ki\Common\Exceptions\ValidationException;
 
 class RecordsController extends \BaseController {
+
+	public function __construct(RecordValidator $validator)
+	{
+		$this->validator = $validator;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -37,7 +44,7 @@ class RecordsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
 	}
 
 

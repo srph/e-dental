@@ -93,10 +93,13 @@ class BasicSeeder extends Seeder {
 
 		for ( $i = 1; $i <= $limit; $i++)
 		{
+			$x = ($i % 10) + 1;
+
 			$db->insert([
 				'id'			=> $i,
 				'user_id'		=> ($i % 3) + 1,
-				'appointed_at'	=> date('Y-m-d')
+				'appointed_at'	=> date('Y-m-d', strtotime(date('Y-m-d') . " + {$x} days")),
+				'created_at'	=> date('Y-m-d')
 			]);
 		}
 	}

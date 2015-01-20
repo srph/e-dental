@@ -7,6 +7,7 @@ use Input;
 use Session;
 use Ki\Validators\User as UserValidator;
 use Ki\Validators\Profile as ProfileValidator;
+use Ki\Common\Exceptions\ValidationException;
 
 class SettingsController extends \BaseController {
 
@@ -27,12 +28,23 @@ class SettingsController extends \BaseController {
   public function user()
   {
     $input = Input::only([
-      'old_password',
       'password',
       'password_confirmation'
     ]);
 
+    try
+    {
+      $rules =  ['username' => '', 'email' => ''];
+      $this->userValidator->validate($input, $rules);
+    }
+    catch(ValidationException $e)
+    {
+      Session::flash('settings.user.error', $e->getMessage());
+      return Redirect::back();
+    }
+
   	$user = Auth::user();
+    $user->password = $input['password'];
   	$user->save();
 
 
@@ -51,7 +63,15 @@ class SettingsController extends \BaseController {
       'birthdate'
     ]);
 
-    $this->profileValidator->validate($input);
+    try
+    {
+      $this->profileValidator->validate($input);
+    }
+    catch(ValidationException $e)
+    {
+      Session::flash('settings.profile.error', $e->getMessage());
+      return Redirect::back();
+    }
 
   	$profile = Auth::user()->profile;
     $profile->first_name = $input['first_name'];

@@ -9,18 +9,24 @@
 
 	<h4> Update Password </h4>
 
-	@if ( Session::has('settings.profile.success') )
+	@if ( Session::has('settings.user.success') )
 		<div class="alert alert-success">
-			{{ Session::get('settings.profile.success') }}
+			{{ Session::get('settings.user.success') }}
+		</div>
+	@endif
+
+	@if ( Session::has('settings.user.error') )
+		<div class="alert alert-danger">
+			{{ Session::get('settings.user.error') }}
 		</div>
 	@endif
 
 	<form action="{{ route('dashboard.you.settings.user') }}" method="POST" style="width: 300px;">
 		<input type="hidden" value="PUT" name="_method">
 
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<input type="password" name="old_password" class="form-control" placeholder="Old password..">
-		</div>
+		</div> -->
 
 		<div class="form-group">
 			<input type="password" name="password" class="form-control" placeholder="New password..">
@@ -39,9 +45,15 @@
 
 	<h4> Update Profile </h4>
 
-	@if ( Session::has('settings.user.success') )
+	@if ( Session::has('settings.profile.success') )
 		<div class="alert alert-success">
-			{{ Session::get('settings.user.profile.success') }}
+			{{ Session::get('settings.profile.success') }}
+		</div>
+	@endif
+
+	@if ( Session::has('settings.profile.error') )
+		<div class="alert alert-danger">
+			{{ Session::get('settings.profile.error') }}
 		</div>
 	@endif
 

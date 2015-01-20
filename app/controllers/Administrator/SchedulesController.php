@@ -12,7 +12,7 @@ class SchedulesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$schedules = Schedule::paginate(20);
+		$schedules = Schedule::orderBy('id', 'desc')->paginate(20);
 
 		return View::make('administrator.schedules.index', compact('schedules'));
 	}

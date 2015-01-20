@@ -2,8 +2,21 @@
 
 use View;
 use Record;
+use User;
+use Input;
+use Doctor;
+use Session;
+use Redirect;
+use Service;
+use Ki\Validators\Record as RecordValidator;
+use Ki\Common\Exceptions\ValidationException;
 
 class RecordsController extends \BaseController {
+
+	public function __construct(RecordValidator $validator)
+	{
+		$this->validator = $validator;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -12,7 +25,7 @@ class RecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Record::with('user.profile')->paginate(20);
+		$records = Record::with('user.profile')->orderBy('id', 'desc')->paginate(20);
 
 		// return \Response::json($records);
 		return View::make('administrator.records.index', compact('records'));
@@ -26,7 +39,11 @@ class RecordsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('administrator.records.create');
+		$users = User::all();
+		$services = Service::all();
+		$doctors = Doctor::all();
+
+		return View::make('administrator.records.create', compact('users', 'services', 'doctors'));
 	}
 
 
@@ -37,7 +54,36 @@ class RecordsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::only([
+			'user_id',
+			'service_id',
+			'doctor_id'
+		]);
+
+		try
+		{
+			$this->validator->validate($input);
+		}
+		catch(ValidationException $e)
+		{
+			Session::flash('administrator.records.create.error', $e->getMessage());
+			return Redirect::back();
+		}
+
+		$user = User::find($input['user_id']);
+		$record = new Record(
+			array_merge($input, [
+				'first_name'		=> $user->profile->first_name,
+				'middle_name'		=> $user->profile->middle_name,
+				'last_name'			=> $user->profile->last_name,
+				'full_name'			=> $user->profile->full_name
+			])
+		);
+		$record->save();
+
+		$message = 'Success creating a record!';
+		Session::flash('administrator.records.create.success', $message);
+		return Redirect::route('dashboard.admin.records.index');
 	}
 
 
