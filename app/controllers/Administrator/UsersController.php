@@ -6,15 +6,19 @@ use Input;
 use Session;
 use Redirect;
 use Ki\Validators\User as UserValidator;
+use Ki\Validators\Profile as ProfileValidator;
+use Ki\Common\Exceptions\ValidationException;
+use Profile;
 
 class UsersController extends \BaseController {
 
 	/**
 	 *
 	 */
-	public function __construct(UserValidator $validator)
+	public function __construct(UserValidator $userValidator, ProfileValidator $profileValidator)
 	{
-		$this->validator = $validator;
+		$this->userValidator = $userValidator;
+		$this->profileValidator = $profileValidator;
 	}
 
 	/**
@@ -48,14 +52,71 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::only([
+			'username',
+			'email',
+			'password',
+			'password_confirmation',
+			'first_name',
+			'middle_name',
+			'last_name',
+			'address',
+			'birthdate'
+		]);
+
+		try
+		{
+			$this->userValidator->validate($input);
+		}
+		catch(ValidationException $e)
+		{
+			Session::flash('admin.user.create.user.error', $e->getMessage());
+			return Redirect::back()->withInput();
+		}
+
+		try
+		{
+			$this->profileValidator->validate($input);
+		}
+		catch(ValidationException $e)
+		{
+			Session::flash('admin.user.create.profile.error', $e->getMessage());
+			return Redirect::back()->withInput();
+		}
+
+		$user = new User;
+		$user->email = $input['email'];
+		$user->password = $input['password'];
+		$user->save();
+
+		$profile = new Profile;
+		$profile->first_name = $input['first_name'];
+		$profile->middle_name = $input['middle_name'];
+		$profile->last_name = $input['last_name'];
+		$profile->full_name = "{$input['first_name']} {$input['middle_name']} {$input['last_name']}";
+	    if ( Input::has('address') )
+	    {
+	      $profile->address = $input['address'];
+	    }
+
+	    if ( Input::has('birthdate') )
+	    {
+	      $profile->birthdate = date('Y-m-d', strtotime($input['birthdate']));
+	    }
+
+	  	$user->profile()->save($profile);
+
+
+		$message = 'User has been successfully created!';
+		Session::flash('admin.user.create.success', $message);
+		Redirect::to('dashboard.you.settings.index');
 	}
 
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param	int	$id
 	 * @return Response
 	 */
 	public function show($id)
@@ -67,7 +128,7 @@ class UsersController extends \BaseController {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param	int	$id
 	 * @return Response
 	 */
 	public function edit($id)
@@ -81,7 +142,7 @@ class UsersController extends \BaseController {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param	int	$id
 	 * @return Response
 	 */
 	public function update($id)
@@ -114,7 +175,7 @@ class UsersController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param	int	$id
 	 * @return Response
 	 */
 	public function destroy($id)

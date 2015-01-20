@@ -22,7 +22,6 @@ class AuthController extends BaseController {
 
 		if ( Auth::attempt($credentials) )
 		{
-			Session::flash('authentication.success', $error);
 			return Redirect::route('dashboard.index');
 		}
 

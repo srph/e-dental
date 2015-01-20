@@ -5,7 +5,25 @@
 @stop
 
 @section('sub-content')
-	<h1> Manage Users </h1>
+	<div class="clearfix">
+		<h1 class="pull-left"> Manage Users </h1>
+		<a href="{{ route('dashboard.admin.users.store') }}" class="btn btn-info pull-right">
+			<i class="ion-person"></i>
+			Create New User
+		</a>
+	</div>
+
+	@if ( Session::has('admin.user.create.success') )
+		<div class="alert alert-success">
+			{{ Session::get('admin.user.create.success') }}
+		</div>
+	@endif
+
+	@if ( Session::has('admin.user.update.success') )
+		<div class="alert alert-success">
+			{{ Session::get('admin.user.update.success') }}
+		</div>
+	@endif
 
 	@if ( Session::has('admin.users.delete') )
 		<div class="alert alert-success">
