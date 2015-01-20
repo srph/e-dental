@@ -16,7 +16,6 @@ class CreateSchedulesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->integer('record_id')->default(0);
 			$table->timestamp('appointed_at');
 			$table->timestamps();
 		});

@@ -75,11 +75,12 @@ class BasicSeeder extends Seeder {
 				'id'			=> $i,
 				'user_id'		=> ($i % 3) + 1,
 				'doctor_id'		=> ($i % 3) + 1,
+				'service_id'	=> ($i % 4) + 1,
+				'schedule_id'	=> !($i % 2) ? 0 : $i / 2,
 				'first_name'	=> $profile->first_name,
 				'middle_name'	=> $profile->middle_name,
 				'last_name'		=> $profile->last_name,
 				'full_name'		=> $profile->full_name,
-				'service_id'	=> ($i % 4) + 1,
 			]);
 		}
 	}

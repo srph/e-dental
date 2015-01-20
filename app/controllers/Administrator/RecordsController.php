@@ -12,8 +12,9 @@ class RecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Record::paginate(20);
+		$records = Record::with('user.profile')->paginate(20);
 
+		// return \Response::json($records);
 		return View::make('administrator.records.index', compact('records'));
 	}
 

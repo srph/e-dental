@@ -18,6 +18,7 @@ class CreateRecordsTable extends Migration {
 			$table->integer('user_id');
 			$table->integer('service_id');
 			$table->integer('doctor_id');
+			$table->integer('schedule_id')->default(0);
 			$table->string('first_name');
 			$table->string('middle_name');
 			$table->string('last_name');

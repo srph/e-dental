@@ -14,7 +14,7 @@
 				<td> # </td>
 				<td> Username </td>
 				<td> Full Name </td>
-				<td> Actions </td>
+				<td style="min-width:125px;"> Actions </td>
 			</tr>
 		</thead>
 
@@ -37,5 +37,7 @@
 			@endforeach
 		</tbody>
 	</table>
+
+	{{ $users->links() }}
 	@endif
 @stop
