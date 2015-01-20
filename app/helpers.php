@@ -10,7 +10,6 @@ function _active($route, $wildcard = true)
 	if ( $wildcard )
 	{
 		$pieces = explode($route, '.');
-		$index = 0;
 
 		$route = array_map(function($piece) use($pieces)
 		{
