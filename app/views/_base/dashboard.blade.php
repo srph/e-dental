@@ -11,6 +11,8 @@
 		padding-bottom: 50px;
 	}
 	</style>
+
+	@yield('sub-styles')
 @stop
 
 @section('content')
@@ -47,4 +49,17 @@
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('scripts')
+	<script>
+		+function($) {
+			var $dlt = $('[data-delete-id]');
+
+			$dlt.on('click', function(evt) {
+				if ( !confirm('Are you sure to delete this?') )
+					evt.preventDefault();
+			})
+		}(jQuery);
+	</script>
 @stop

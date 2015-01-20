@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 
 	{{ HTML::style('assets/bootstrap/dist/css/bootstrap.min.css') }}
+	{{ HTML::style('assets/ionicons/css/ionicons.min.css') }}
 	@yield('style')
 </head>
 <body>
