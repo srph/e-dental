@@ -12,9 +12,9 @@
 		<thead>
 			<tr>
 				<td> # </td>
-				<td> Username </td>
-				<td> Full Name </td>
-				<td> Actions </td>
+				<td> Patient's Full Name </td>
+				<td> Date Appointed </td>
+				<td> Date Created </td>
 			</tr>
 		</thead>
 
@@ -22,20 +22,18 @@
 			@foreach($schedules as $schedule)
 				<tr>
 					<td> {{ $schedule->id }}  </td>
-					<td> {{ $schedule->username }} </td>
-					<td> {{ $schedule->profile->full_name }} </td>
-					<td> 
-						<a href="{{ route('dashboard.admin.schedules.edit', $schedule->id) }}" class="btn btn-primary">
-							<i class="ion-edit"></i>
-						</a>
-						<form action="{{ route('dashboard.admin.schedules.destroy') }}" style="display: inline-block;">
-							<input type="hidden" value="_DELETE">
-							<button type="form" data-delete-id="{{ $schedule->id }}" class="btn btn-danger"> <i class="ion-trash-b"></i> </button>
-						</form>
+					<td>
+						{{ $schedule->user->username }}
+						({{ $schedule->user->profile->full_name }})
 					</td>
+					<td> {{ $schedule->appointed_at->diffForHumans() }} </td>
+					<td> {{ $schedule->created_at->diffForHumans() }} </td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
+
+	{{ $schedules->links() }}
 	@endif
+	}
 @stop

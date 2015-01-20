@@ -14,7 +14,7 @@ class SchedulesController extends \BaseController {
 	{
 		$schedules = Schedule::paginate(20);
 
-		return View::make('administrator.schedules.index', compact($schedules));
+		return View::make('administrator.schedules.index', compact('schedules'));
 	}
 
 

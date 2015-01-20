@@ -17,7 +17,7 @@ class Schedule extends Eloquent {
 	/**
 	 *
 	 */
-	public function patient()
+	public function user()
 	{
 		return $this->belongsTo('User');
 	}
