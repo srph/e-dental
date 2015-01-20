@@ -8,7 +8,7 @@
 	<h1> Manage Users </h1>
 
 	@if ( count($users) )
-	<table class="table">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<td> # </td>
@@ -23,12 +23,14 @@
 				<tr>
 					<td> {{ $user->id }}  </td>
 					<td> {{ $user->username }} </td>
-					<td> {{ $user->full_name }} </td>
+					<td> {{ $user->profile->full_name }} </td>
 					<td> 
-						<a href="#" class="btn btn-primary"> <i class="ion-pencil"></i> </a>
-						<form action="{{ route('dashboard.admin.users.destroy') }}">
+						<a href="{{ route('dashboard.admin.users.edit', $user->id) }}" class="btn btn-primary">
+							<i class="ion-edit"></i>
+						</a>
+						<form action="{{ route('dashboard.admin.users.destroy') }}" style="display: inline-block;">
 							<input type="hidden" value="_DELETE">
-							<button type="form" data-delete-id="{{ $user->id }}"> <i class="ion-trash"></i> </button>
+							<button type="form" data-delete-id="{{ $user->id }}" class="btn btn-danger"> <i class="ion-trash-b"></i> </button>
 						</form>
 					</td>
 				</tr>
