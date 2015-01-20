@@ -39,7 +39,8 @@ class BasicSeeder extends Seeder {
 				'id'		=> $i,
 				'username'	=> $x,
 				'password'	=> Hash::make('yolo'),
-				'email'		=> $x . '@yahoo.com'
+				'email'		=> $x . '@yahoo.com',
+				'is_admin'	=> $i == 1 ? 1 : 0
 			]);
 
 			$fn = $this->f->firstName;

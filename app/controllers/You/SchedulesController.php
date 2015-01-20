@@ -1,5 +1,6 @@
 <?php namespace You;
 
+use Auth;
 use View;
 use Schedule;
 
@@ -12,7 +13,9 @@ class SchedulesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$schedules = Auth::user()->schedules()->paginate(20);
+
+		return View::make('you.schedules.index', compact('schedules'));
 	}
 
 

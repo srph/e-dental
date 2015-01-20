@@ -1,5 +1,6 @@
 <?php namespace You;
 
+use Auth;
 use View;
 use Records;
 
@@ -12,9 +13,9 @@ class RecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Records::all();
+		$records = Auth::user()->records()->paginate(20);
 
-		return View::make('administrator.records.index', compact('records'));
+		return View::make('you.records.index', compact('records'));
 	}
 
 

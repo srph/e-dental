@@ -46,12 +46,12 @@
 						@endif
 
 						@if ( Session::has('authentication.logout') )
-							<div class="alert alert-danger">
+							<div class="alert alert-success">
 								{{ Session::get('authentication.logout') }}
 							</div>
 						@endif
 
-						<form>
+						<form method="POST" action="{{ route('auth.auth') }}">
 							<div class="form-group">
 								<label> Username </label>
 								<input type="text" class="form-control" name="username">

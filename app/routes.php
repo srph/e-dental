@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'dashboard'], function()
+Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
 {
 	/**
 	 * Administrators
@@ -44,9 +44,9 @@ Route::group(['prefix' => 'dashboard'], function()
 		 */
 		Route::group(['prefix' => 'settings'], function()
 		{
-			Route::get('/', ['as' => 'dashboard.you.settings.index', 'uses' => 'You\DashboardController@index']);
-			Route::put('user', ['as' => 'dashboard.you.settings.user', 'uses' => 'You\DashboardController@user']);
-			Route::put('profile', ['as' => 'dashboard.you.settings.profile', 'uses' => 'You\DashboardController@poofile']);
+			Route::get('/', ['as' => 'dashboard.you.settings.index', 'uses' => 'SettingsController@index']);
+			Route::put('user', ['as' => 'dashboard.you.settings.user', 'uses' => 'SettingsController@user']);
+			Route::put('profile', ['as' => 'dashboard.you.settings.profile', 'uses' => 'SettingsController@poofile']);
 		});
 	});
 
@@ -60,7 +60,7 @@ Route::group(['prefix' => 'dashboard'], function()
 Route::group(['prefix' => 'auth'], function()
 {
 	Route::get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
-	Route::post('login', ['as' => 'auth.login', 'uses' => 'AuthController@postLogin']);
+	Route::post('login', ['as' => 'auth.auth', 'uses' => 'AuthController@postLogin']);
 	Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
 });
 
