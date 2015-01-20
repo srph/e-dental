@@ -7,7 +7,7 @@
 @section('sub-content')
 	<div class="clearfix" style="margin-bottom: 20px;">
 		<h1 style="margin-top: 0;" class="pull-left"> Manage Records </h1>
-		<a href="#" class="btn btn-info pull-right">
+		<a href="{{ route('dashboard.admin.records.create') }}" class="btn btn-info pull-right">
 			<i class="ion-document"></i>
 			Create New Record
 		</a>

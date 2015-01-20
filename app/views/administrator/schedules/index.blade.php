@@ -5,7 +5,19 @@
 @stop
 
 @section('sub-content')
-	<h1> Manage Schedules </h1>
+	<div class="clearfix">
+		<h1 style="margin-top: 0; margin-bottom: 25px;" class="pull-left"> Manage Schedules </h1>
+		<a href="{{ route('dashboard.admin.schedules.create') }}" class="btn btn-info pull-right">
+			<i class="ion-android-calendar"></i>
+			Create New Appointment
+		</a>
+	</div>
+
+	@if ( Session::has('administrator.schedules.create.success') )
+		<div class="alert alert-danger">
+			{{ Session::get('administrator.schedules.create.success') }}
+		</div>
+	@endif
 
 	@if ( count($schedules) )
 	<table class="table table-hover">
