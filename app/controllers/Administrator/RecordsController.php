@@ -1,7 +1,7 @@
 <?php namespace Administrator;
 
 use View;
-use Records;
+use Record;
 
 class RecordsController extends \BaseController {
 
@@ -12,7 +12,7 @@ class RecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Records::all();
+		$records = Record::paginate(20);
 
 		return View::make('administrator.records.index', compact('records'));
 	}

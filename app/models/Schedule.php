@@ -3,6 +3,18 @@
 class Schedule extends Eloquent {
 
 	/**
+	 * Add automatically `appointed_at` converted-to-Carbon properties
+	 */
+	public function getDates()
+	{
+		return [
+			'created_at',
+			'updated_at',
+			'appointed_at'
+		];
+	}
+
+	/**
 	 *
 	 */
 	public function patient()

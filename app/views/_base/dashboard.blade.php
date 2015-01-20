@@ -32,8 +32,8 @@
 					<div class="panel-heading">Administrator Panel</div>
 					<div class="list-group">
 						<a class="list-group-item {{ _active('dashboard.admin.users') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Users</a>
-						<a class="list-group-item {{ _active('dashboard.admin.records') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Records</a>
-						<a class="list-group-item {{ _active('dashboard.admin.schedules') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Schedules</a>
+						<a class="list-group-item {{ _active('dashboard.admin.records') }}" href="{{ route('dashboard.admin.records.index') }}">Manage Records</a>
+						<a class="list-group-item {{ _active('dashboard.admin.schedules') }}" href="{{ route('dashboard.admin.schedules.index') }}">Manage Schedules</a>
 						<a class="list-group-item {{ _active('dashboard.admin.reports') }}" href="{{ route('dashboard.admin.users.index') }}">Reports</a>
 					</div>
 				</div>

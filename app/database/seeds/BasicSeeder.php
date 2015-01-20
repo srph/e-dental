@@ -31,7 +31,7 @@ class BasicSeeder extends Seeder {
 		$db->truncate();
 		$pr->truncate();
 
-		for ( $i = 1; $i <= 4; $i++ )
+		for ( $i = 1; $i <= $limit; $i++ )
 		{
 			$x = 'edms' . $i;
 
@@ -73,13 +73,13 @@ class BasicSeeder extends Seeder {
 
 			$db->insert([
 				'id'			=> $i,
-				'user_id'		=> $i % 3,
-				'doctor_id'		=> $i % 3,
+				'user_id'		=> ($i % 3) + 1,
+				'doctor_id'		=> ($i % 3) + 1,
 				'first_name'	=> $profile->first_name,
 				'middle_name'	=> $profile->middle_name,
 				'last_name'		=> $profile->last_name,
 				'full_name'		=> $profile->full_name,
-				'service_id'	=> $i % 4,
+				'service_id'	=> ($i % 4) + 1,
 			]);
 		}
 	}
@@ -93,7 +93,7 @@ class BasicSeeder extends Seeder {
 		{
 			$db->insert([
 				'id'			=> $i,
-				'user_id'		=> $i % 3,
+				'user_id'		=> ($i % 3) + 1,
 				'appointed_at'	=> date('Y-m-d')
 			]);
 		}
