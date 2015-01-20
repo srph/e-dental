@@ -2,6 +2,9 @@
 
 use User;
 use View;
+use Input;
+use Session;
+use Redirect;
 use Ki\Validators\User as UserValidator;
 
 class UsersController extends \BaseController {

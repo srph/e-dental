@@ -7,6 +7,12 @@
 @section('sub-content')
 	<h1> Manage Users </h1>
 
+	@if ( Session::has('admin.users.delete') )
+		<div class="alert alert-success">
+			{{ Session::get('admin.users.delete') }}
+		</div>
+	@endif
+
 	@if ( count($users) )
 	<table class="table table-hover">
 		<thead>
@@ -28,8 +34,8 @@
 						<a href="{{ route('dashboard.admin.users.edit', $user->id) }}" class="btn btn-primary">
 							<i class="ion-edit"></i>
 						</a>
-						<form action="{{ route('dashboard.admin.users.destroy') }}" style="display: inline-block;">
-							<input type="hidden" value="_DELETE">
+						<form action="{{ route('dashboard.admin.users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
+							<input type="hidden" value="DELETE" name="_method">
 							<button type="form" data-delete-id="{{ $user->id }}" class="btn btn-danger"> <i class="ion-trash-b"></i> </button>
 						</form>
 					</td>
