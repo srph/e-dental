@@ -4,5 +4,6 @@
 	Manage Users
 @stop
 
-@section('content')
+@section('sub-content')
+	Yolo
 @stop
