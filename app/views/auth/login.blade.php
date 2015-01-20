@@ -1,5 +1,9 @@
 @extends('_base.template')
 
+@section('title')
+	Sign In
+@stop
+
 @section('style')
 	<style>
 		.container {
@@ -32,7 +36,7 @@
 		<div class="outer-container">
 			<div class="inner-container">
 				<div class="panel panel-default">
-					<div class="panel-heading"> Welcome, User </div>
+					<div class="panel-heading"> Welcome back! </div>
 
 					<div class="panel-body">
 						@if ( Session::has('authentication.error') )

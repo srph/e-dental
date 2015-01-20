@@ -1,5 +1,8 @@
 <?php namespace Administrator;
 
+use View;
+use Records;
+
 class RecordsController extends \BaseController {
 
 	/**
@@ -9,7 +12,9 @@ class RecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$records = Records::all();
+
+		return View::make('administrator.records.index', compact('records'));
 	}
 
 
@@ -20,7 +25,7 @@ class RecordsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('administrator.records.create');
 	}
 
 

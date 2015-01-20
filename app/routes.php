@@ -19,14 +19,13 @@ Route::group(['prefix' => 'dashboard'], function()
 	 */
 	Route::group([
 		'namespace' => 'Administrator',
-		'prefix' => 'administrator'
+		'prefix' => 'admin'
 	], function()
 	{
 		Route::resource('users', 'UsersController');
 		Route::resource('records', 'RecordsController');
 		Route::resource('schedules', 'SchedulesController');
 	});
-
 
 	// Route::resource('schedules', 'SchedulesController');
 	// Route::resource('schedules', 'SchedulesController');

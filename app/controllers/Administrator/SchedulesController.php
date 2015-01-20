@@ -1,5 +1,8 @@
 <?php namespace Administrator;
 
+use View;
+use Schedule;
+
 class SchedulesController extends \BaseController {
 
 	/**

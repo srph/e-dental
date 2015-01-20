@@ -1,6 +1,18 @@
 <?php namespace Administrator;
 
+use User;
+use View;
+use Ki\Common\Validators\User as UserValidator;
+
 class UsersController extends \BaseController {
+
+	/**
+	 *
+	 */
+	public function __construct(UserValidator $validator)
+	{
+		$this->validator = $validator;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +21,9 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$users = User::paginate(20);
+
+		return View::make('administrator.users.index', compact('users'));
 	}
 
 
@@ -20,7 +34,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('administrator.users.create');
 	}
 
 
@@ -43,7 +57,7 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$user = User::findOrFail($id);
 	}
 
 
@@ -55,7 +69,9 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = User::findOrFail($id);
+
+		return View::make('administrator.users.edit', compact('user'));
 	}
 
 
@@ -67,7 +83,28 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::only([
+			'username',
+			'password',
+			'email'
+		]);
+
+		try
+		{
+			$this->validator->validate($input);
+		}
+		catch(Exception $e)
+		{
+			Session::flash('admin.users.delete', $e->getMessages());
+			Redirect::back();
+		}
+
+		$user = User::findOrFail($id);
+		$user->username = $input['username'];
+		$user->password = $input['password'];
+		$user->email = $input['email'];
+
+		return Redirect::back();
 	}
 
 
@@ -79,7 +116,11 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		User::findOrFail($id)->delete();
+
+		$message = 'User has been successfully deleted';
+		Session::flash('admin.users.delete', $message);
+		return Redirect::back();
 	}
 
 
