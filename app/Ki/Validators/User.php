@@ -4,9 +4,9 @@ use Ki\Common\AbstractValidator;
 
 class User extends AbstractValidator {
 
-	protected $rules = [
+	public $rules = [
 		'username'	=> 'required|min:3|alpha_dash',
-		'password'	=> 'required|min:5',
+		'password'	=> 'required|min:5|confirmed',
 		'email'		=> 'email'
 	];
 

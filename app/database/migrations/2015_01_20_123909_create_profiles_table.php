@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration {
 			$table->string('last_name');
 			$table->string('full_name');
 			$table->string('address')->nullable();
-			$table->timestamp('birthdate');
+			$table->timestamp('birthdate')->nullable();
 			$table->timestamps();
 		});
 	}

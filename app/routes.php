@@ -46,7 +46,7 @@ Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
 		{
 			Route::get('/', ['as' => 'dashboard.you.settings.index', 'uses' => 'SettingsController@index']);
 			Route::put('user', ['as' => 'dashboard.you.settings.user', 'uses' => 'SettingsController@user']);
-			Route::put('profile', ['as' => 'dashboard.you.settings.profile', 'uses' => 'SettingsController@poofile']);
+			Route::put('profile', ['as' => 'dashboard.you.settings.profile', 'uses' => 'SettingsController@profile']);
 		});
 	});
 

@@ -1,5 +1,6 @@
 <?php namespace Ki\Common;
 
+use Validator;
 use Ki\Common\Exceptions\ValidationException;
 
 abstract class AbstractValidator {
@@ -7,20 +8,20 @@ abstract class AbstractValidator {
 	/**
 	 * Validation rules
 	 */
-	protected $rules = [];
+	public $rules = array();
 
 	/**
 	 * Execute validation
 	 */
-	public function validate($input, array $rules = array(), $override = true)
+	public function validate(array $input, array $rules = array(), $override = false)
 	{
 		$rules = !count($rules)
 			? $this->rules
-			: $override ? $rules : array_merge($this->rules, $rules);
+			: ($override ? $rules : array_merge($this->rules, $rules));
 
 		$validation = Validator::make($input, $rules);
 
-		if ( $validations->fails() )
+		if ( $validation->fails() )
 		{
 			throw new ValidationException( $validation->messages() );
 		}

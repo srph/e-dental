@@ -63,6 +63,8 @@
 @stop
 
 @section('scripts')
+	{{ HTML::script('assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}
+
 	<script>
 		+function($) {
 			var $dlt = $('[data-delete-id]');
@@ -73,4 +75,6 @@
 			})
 		}(jQuery);
 	</script>
+
+	@yield('sub-scripts')
 @stop
