@@ -7,32 +7,37 @@
 @section('sub-content')
 	<h1> Manage Records </h1>
 
-	@if ( count($schedules) )
+	@if ( count($records) )
 	<table class="table table-hover">
 		<thead>
 			<tr>
 				<td> # </td>
-				<td> Patient's Full Name </td>
-				<td> Date Appointed </td>
-				<td> Date Created </td>
+				<td> Doctor </td>
+				<td> Service </td>
+				<td> Scheduled Date </td>
 			</tr>
 		</thead>
 
 		<tbody>
-			@foreach($schedules as $schedule)
+			@foreach($records as $record)
 				<tr>
-					<td> {{ $schedule->id }}  </td>
+					<td> {{ $record->id }}  </td>
+					<td> {{ $record->doctor->name }} </td>
+					<td> {{ $record->service->name }} </td>
 					<td>
-						{{ $schedule->user->username }}
-						({{ $schedule->user->profile->full_name }})
+						@if ( $record->hasSchedule() )
+							{{ $record->schedule->appointed_at->diffForHumans() }}
+						@else
+							<label class="label label-warning">
+								Unscheduled
+							</label>
+						@endif
 					</td>
-					<td> {{ $schedule->appointed_at->diffForHumans() }} </td>
-					<td> {{ $schedule->created_at->diffForHumans() }} </td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
 
-	{{ $schedules->links() }}
+	{{ $records->links() }}
 	@endif
 @stop
