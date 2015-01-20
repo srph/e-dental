@@ -35,5 +35,4 @@
 
 	{{ $schedules->links() }}
 	@endif
-	}
 @stop
