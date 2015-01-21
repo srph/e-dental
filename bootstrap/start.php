@@ -28,6 +28,9 @@ $env = $app->detectEnvironment(array(
 
 	'local' => array('homestead'),
 
+	// Kier Borromeo's configuration
+	'srph' => array('Froilans-MacBook-Pro.local'),
+
 ));
 
 /*
