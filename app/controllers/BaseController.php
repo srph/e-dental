@@ -15,4 +15,14 @@ class BaseController extends Controller {
 		}
 	}
 
+	/**
+	 * Shorthand for Session::flash ($this->flash is awesome)
+	 * @param string 	$key 	Session key
+	 * @param string 	$value 	Session value
+	 */
+	protected function flash($key, $value)
+	{
+		\Session::flash($key, $value);
+	}
+
 }
