@@ -22,10 +22,18 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">User Panel</div>
 					<div class="list-group">
-						<a class="list-group-item {{ _active('dashboard.index', false) }}" href="{{ route('dashboard.index') }}">Dashboard</a>
-						<a class="list-group-item {{ _active('dashboard.you.settings') }}" href="{{ route('dashboard.you.settings.index') }}">Settings</a>
-						<a class="list-group-item {{ _active('dashboard.you.schedules') }}" href="{{ route('dashboard.you.schedules.index') }}">Your Schedules</a>
-						<a class="list-group-item {{ _active('dashboard.you.records') }}" href="{{ route('dashboard.you.records.index') }}">Your Records</a>
+						<a class="list-group-item {{ _active('dashboard.index', false) }}" href="{{ route('dashboard.index') }}">
+							<i class="ion-person"></i> Dashboard
+						</a>
+						<a class="list-group-item {{ _active('dashboard.you.settings') }}" href="{{ route('dashboard.you.settings.index') }}">
+							<i class="ion-ios-gear"></i> Settings
+						</a>
+						<a class="list-group-item {{ _active('dashboard.you.schedules') }}" href="{{ route('dashboard.you.schedules.index') }}">
+							<i class="ion-android-calendar"></i> Your Schedules
+						</a>
+						<a class="list-group-item {{ _active('dashboard.you.records') }}" href="{{ route('dashboard.you.records.index') }}">
+							<i class="ion-document"></i> Your Records
+						</a>
 					</div>
 				</div>
 
@@ -33,10 +41,18 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Administrator Panel</div>
 					<div class="list-group">
-						<a class="list-group-item {{ _active('dashboard.admin.users') }}" href="{{ route('dashboard.admin.users.index') }}">Manage Users</a>
-						<a class="list-group-item {{ _active('dashboard.admin.records') }}" href="{{ route('dashboard.admin.records.index') }}">Manage Records</a>
-						<a class="list-group-item {{ _active('dashboard.admin.schedules') }}" href="{{ route('dashboard.admin.schedules.index') }}">Manage Schedules</a>
-						<a class="list-group-item {{ _active('dashboard.admin.reports') }}" href="{{ route('dashboard.admin.users.index') }}">Reports</a>
+						<a class="list-group-item {{ _active('dashboard.admin.users') }}" href="{{ route('dashboard.admin.users.index') }}">
+							<i class="ion-ios-people"></i> Manage Users
+						</a>
+						<a class="list-group-item {{ _active('dashboard.admin.records') }}" href="{{ route('dashboard.admin.records.index') }}">
+							<i class="ion-ios-copy-outline"></i> Manage Records
+						</a>
+						<a class="list-group-item {{ _active('dashboard.admin.schedules') }}" href="{{ route('dashboard.admin.schedules.index') }}">
+							<i class="ion-android-calendar"></i> Manage Schedules
+						</a>
+						<a class="list-group-item {{ _active('dashboard.admin.reports') }}" href="{{ route('dashboard.admin.users.index') }}">
+							<i class="ion-pie-graph"></i> Reports
+						</a>
 					</div>
 				</div>
 				@endif
