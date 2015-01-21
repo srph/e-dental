@@ -22,7 +22,7 @@ class CreateProfilesTable extends Migration {
 			$table->string('full_name');
 			$table->string('address')->nullable();
 			$table->timestamp('birthdate')->nullable();
-			$table->string('avatar')->nullable();
+			$table->string('avatar')->default('tuzki.png');
 			$table->timestamps();
 		});
 	}
