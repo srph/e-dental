@@ -17,4 +17,6 @@
 		<strong>{{ $user->schedules->count() }}</strong> schedules, and
 		<strong>{{ $user->records->count() }}</strong> records.
 	</div>
+
+	<img src="{{ $user->avatar }}">
 @stop

@@ -17,14 +17,6 @@ class Record extends Eloquent {
 	);
 
 	/**
-	 * Transform the avatar attribute to a link
-	 */
-	public function getAvatarAttribute()
-	{
-		return url("uploads/{$this->avatar}");
-	}
-
-	/**
 	 * 
 	 */
 	public function user()
