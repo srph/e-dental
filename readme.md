@@ -1,7 +1,6 @@
 ## E-Dental
 
 [![Author | Shields.io](http://img.shields.io/badge/author-%40srph-blue.svg?style=flat-square)](http://twitter.com/_srph)
-[![Author | Shields.io](http://img.shields.io/badge/author-%40srph-blue.svg?style=flat-square)](http://twitter.com/_srph)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 An EDMS [quick work] for Jealian's (:heart:) project on IT22-FA3, built with Laravel.
@@ -23,13 +22,13 @@ Plus, do not read this shit for Best Practices. Thanks.
 
 ### Installing
 
-1. **Get a local copy**. Or clone it with Git.
+[1] **Get a local copy**. Or clone it with Git.
 
 ```
 $ git clone https://github.com/srph/e-dental
 ```
 
-2.  Update dependencies
+[2]  Update dependencies
 
 ```
 $ cd /path/to/e-dental # switch the current direct to the cloned repository
@@ -41,7 +40,7 @@ $ composer install
 $ bower install
 ```
 
-3. Installing the database
+[3] Installing the database
 
 Create a database, first.
 
