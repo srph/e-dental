@@ -5,18 +5,27 @@ use View;
 use Input;
 use Session;
 use Redirect;
+
+use Profile;
+
 use Ki\Validators\User as UserValidator;
 use Ki\Validators\Profile as ProfileValidator;
 use Ki\Common\Exceptions\ValidationException;
-use Profile;
+use Ki\Common\Uploader\UploaderInterface;
+
 
 class UsersController extends \BaseController {
 
 	/**
 	 *
 	 */
-	public function __construct(UserValidator $userValidator, ProfileValidator $profileValidator)
+	public function __construct(
+		UploaderInterface $uploader,
+		UserValidator $userValidator,
+		ProfileValidator $profileValidator
+	)
 	{
+		$this->uploader = $uploader;
 		$this->userValidator = $userValidator;
 		$this->profileValidator = $profileValidator;
 	}
@@ -30,7 +39,7 @@ class UsersController extends \BaseController {
 	{
 		$users = User::orderBy('id', 'desc')->paginate(20);
 
-		return View::make('administrator.users.index', compact('users'));
+		return $this->view('administrator.users.index', compact('users'));
 	}
 
 
@@ -41,7 +50,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('administrator.users.create');
+		return $this->view('administrator.users.create');
 	}
 
 
@@ -52,7 +61,9 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only([
+		// Sanitize the input fields
+		// to be used within this request
+		$input = $this->input([
 			'username',
 			'email',
 			'password',
@@ -64,52 +75,58 @@ class UsersController extends \BaseController {
 			'birthdate'
 		]);
 
+		// Validate user data
 		try
 		{
+			// Catch invalid data
 			$this->userValidator->validate($input);
 		}
 		catch(ValidationException $e)
 		{
-			Session::flash('admin.user.create.user.error', $e->getMessage());
-			return Redirect::back()->withInput();
+			$key = 'admin.user.create.user.error';
+			return $this
+				->flash($key, $e->getMessage())
+				->back();
 		}
 
+		// Validate profile data
 		try
 		{
+			// Catch invalid data
 			$this->profileValidator->validate($input);
 		}
 		catch(ValidationException $e)
 		{
-			Session::flash('admin.user.create.profile.error', $e->getMessage());
-			return Redirect::back()->withInput();
+			$key = 'admin.user.create.profile.error';
+
+			return $this
+				->flash($key, $e->getMessage());
+				->back();
 		}
 
+		// Let's create the User model from the input
 		$user = new User;
-		$user->email = $input['email'];
+		$user->email 	= $input['email'];
 		$user->password = $input['password'];
-		$user->save();
 
+		// And then create its Profile
 		$profile = new Profile;
-		$profile->first_name = $input['first_name'];
-		$profile->middle_name = $input['middle_name'];
-		$profile->last_name = $input['last_name'];
-		$profile->full_name = "{$input['first_name']} {$input['middle_name']} {$input['last_name']}";
-	    if ( Input::has('address') )
-	    {
-	      $profile->address = $input['address'];
-	    }
+		$profile->first_name 	= $input['first_name'];
+		$profile->middle_name 	= $input['middle_name'];
+		$profile->last_name 	= $input['last_name'];
+		$profile->full_name 	= "{$input['first_name']} {$input['middle_name']} {$input['last_name']}";
+	    $profile->address 		= $input['address'] ?: null;
+	    $profile->birthdate 	= date('Y-m-d', strtotime($input['birthdate'] ?: null) );
 
-	    if ( Input::has('birthdate') )
-	    {
-	      $profile->birthdate = date('Y-m-d', strtotime($input['birthdate']));
-	    }
-
+	    // Save the user along with its relationship
+	    $user->save();
 	  	$user->profile()->save($profile);
 
-
 		$message = 'User has been successfully created!';
-		Session::flash('admin.user.create.success', $message);
-		Redirect::to('dashboard.you.settings.index');
+
+		return $this
+			->flash('admin.user.create.success', $message);
+			->redirect('dashboard.you.settings.index');
 	}
 
 
@@ -135,7 +152,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		return View::make('administrator.users.edit', compact('user'));
+		return $this->view('administrator.users.edit', compact('user'));
 	}
 
 
@@ -147,11 +164,9 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::only([
-			'username',
-			'password',
-			'email'
-		]);
+		// Sanitize the input fields
+		// to be used within this request
+		$input = $this->input(['username', 'password', 'email']);
 
 		try
 		{
@@ -159,16 +174,19 @@ class UsersController extends \BaseController {
 		}
 		catch(Exception $e)
 		{
-			Session::flash('admin.users.delete', $e->getMessages());
-			Redirect::back();
+			$key = 'admin.users.update.error';
+
+			$this
+				->flash($key, $e->getMessages())
+				->back();
 		}
 
 		$user = User::findOrFail($id);
 		$user->username = $input['username'];
 		$user->password = $input['password'];
-		$user->email = $input['email'];
+		$user->email 	= $input['email'];
 
-		return Redirect::back();
+		return $this->back();
 	}
 
 
@@ -183,8 +201,10 @@ class UsersController extends \BaseController {
 		User::findOrFail($id)->delete();
 
 		$message = 'User has been successfully deleted';
-		Session::flash('admin.users.delete', $message);
-		return Redirect::back();
+		
+		return $this
+			->flash('admin.users.delete', $message);
+			->back(false);
 	}
 
 

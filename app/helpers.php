@@ -24,3 +24,12 @@ function _active($route, $wildcard = true)
 
 	return $route == $current ? 'active' : '';
 }
+
+/**
+ * A replacement for is_array because it seems to be so slow
+ * @return boolean
+ */
+function _is_array($whatever)
+{
+	return (array) $whatever == $whatever;
+}

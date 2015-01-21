@@ -13,6 +13,11 @@ use Ki\Common\Exceptions\ValidationException;
 
 class RecordsController extends \BaseController {
 
+	/**
+	 * Class constructor
+	 *
+	 * @param Ki\Validators\Record $validator 	Validator wharevs
+	 */
 	public function __construct(RecordValidator $validator)
 	{
 		$this->validator = $validator;
@@ -27,8 +32,7 @@ class RecordsController extends \BaseController {
 	{
 		$records = Record::with('user.profile')->orderBy('id', 'desc')->paginate(20);
 
-		// return \Response::json($records);
-		return View::make('administrator.records.index', compact('records'));
+		return $this->view('administrator.records.index', compact('records'));
 	}
 
 
@@ -42,8 +46,9 @@ class RecordsController extends \BaseController {
 		$users = User::all();
 		$services = Service::all();
 		$doctors = Doctor::all();
+		$data = compact('users', 'services', 'doctors');
 
-		return View::make('administrator.records.create', compact('users', 'services', 'doctors'));
+		return $this->view('administrator.records.create', $data);
 	}
 
 
@@ -54,36 +59,42 @@ class RecordsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only([
-			'user_id',
-			'service_id',
-			'doctor_id'
-		]);
+		$input = $this->input(['user_id', 'service_id', 'doctor_id']);
 
 		try
 		{
+			// Catch invalid data
 			$this->validator->validate($input);
 		}
 		catch(ValidationException $e)
 		{
-			Session::flash('administrator.records.create.error', $e->getMessage());
-			return Redirect::back();
+			$key = 'administrator.records.create.error';
+
+			return $this
+				->flash($key, $e->getMessage() )
+				->back(true);
 		}
 
-		$user = User::find($input['user_id']);
-		$record = new Record(
-			array_merge($input, [
-				'first_name'		=> $user->profile->first_name,
-				'middle_name'		=> $user->profile->middle_name,
-				'last_name'			=> $user->profile->last_name,
-				'full_name'			=> $user->profile->full_name
-			])
-		);
+		// Fetch the user with the provided ID
+		$user = User::find( $input['user_id'] );
+
+		// Let's create the record
+		$record = new Record;
+		$record->user_id 		= $input['user_id'];
+		$record->service_id 	= $input['user_id'];
+		$record->docotor_id 	= $input['user_id'];
+		$record->first_name		= $user->profile->first_name,
+		$record->middle_name	= $user->profile->middle_name,
+		$record->last_name		= $user->profile->last_name,
+		$record->full_name		= $user->profile->full_name
 		$record->save();
 
-		$message = 'Success creating a record!';
-		Session::flash('administrator.records.create.success', $message);
-		return Redirect::route('dashboard.admin.records.index');
+		$key = 'administrator.records.create.success';
+		$message = 'Record was successfully created!';
+
+		return $this
+			->flash($key, $message)
+			->redirect('dashboard.admin.records.index');
 	}
 
 
