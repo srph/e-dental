@@ -7,7 +7,7 @@
 @section('sub-content')
 	<div class="clearfix">
 		<h1 class="pull-left"> Manage Users </h1>
-		<a href="{{ route('dashboard.admin.users.store') }}" class="btn btn-info pull-right">
+		<a href="{{ route('dashboard.admin.users.create') }}" class="btn btn-info pull-right">
 			<i class="ion-person"></i>
 			Create New User
 		</a>

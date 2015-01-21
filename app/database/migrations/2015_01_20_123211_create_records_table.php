@@ -23,6 +23,7 @@ class CreateRecordsTable extends Migration {
 			$table->string('middle_name');
 			$table->string('last_name');
 			$table->string('full_name');
+			// $table->float('price')->nullable();
 			$table->timestamps();
 		});
 	}

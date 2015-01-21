@@ -75,6 +75,6 @@ class BaseController extends Controller {
 	 */
 	protected function view($view, array $data = null)
 	{
-		return View::make($view, $data);
+		return View::make($view, $data ?: []);
 	}
 }

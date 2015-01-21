@@ -100,7 +100,7 @@ class UsersController extends \BaseController {
 			$key = 'admin.user.create.profile.error';
 
 			return $this
-				->flash($key, $e->getMessage());
+				->flash($key, $e->getMessage())
 				->back();
 		}
 
@@ -125,7 +125,7 @@ class UsersController extends \BaseController {
 		$message = 'User has been successfully created!';
 
 		return $this
-			->flash('admin.user.create.success', $message);
+			->flash('admin.user.create.success', $message)
 			->redirect('dashboard.you.settings.index');
 	}
 
@@ -203,7 +203,7 @@ class UsersController extends \BaseController {
 		$message = 'User has been successfully deleted';
 		
 		return $this
-			->flash('admin.users.delete', $message);
+			->flash('admin.users.delete', $message)
 			->back(false);
 	}
 

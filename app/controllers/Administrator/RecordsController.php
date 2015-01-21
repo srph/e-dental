@@ -83,10 +83,10 @@ class RecordsController extends \BaseController {
 		$record->user_id 		= $input['user_id'];
 		$record->service_id 	= $input['user_id'];
 		$record->docotor_id 	= $input['user_id'];
-		$record->first_name		= $user->profile->first_name,
-		$record->middle_name	= $user->profile->middle_name,
-		$record->last_name		= $user->profile->last_name,
-		$record->full_name		= $user->profile->full_name
+		$record->first_name		= $user->profile->first_name;
+		$record->middle_name	= $user->profile->middle_name;
+		$record->last_name		= $user->profile->last_name;
+		$record->full_name		= $user->profile->full_name;
 		$record->save();
 
 		$key = 'administrator.records.create.success';
