@@ -22,7 +22,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">User Panel</div>
 					<div class="list-group">
-						<a class="list-group-item {{ _active('dashboard.you.dashboard') }}" href="{{ route('dashboard.index') }}">Dashboard</a>
+						<a class="list-group-item {{ _active('dashboard.index', false) }}" href="{{ route('dashboard.index') }}">Dashboard</a>
 						<a class="list-group-item {{ _active('dashboard.you.settings') }}" href="{{ route('dashboard.you.settings.index') }}">Settings</a>
 						<a class="list-group-item {{ _active('dashboard.you.schedules') }}" href="{{ route('dashboard.you.schedules.index') }}">Your Schedules</a>
 						<a class="list-group-item {{ _active('dashboard.you.records') }}" href="{{ route('dashboard.you.records.index') }}">Your Records</a>

@@ -1,9 +1,11 @@
 <?php namespace Ki\Common\Uploader;
 
+use Ki\Common\Uploader\UploaderInterface;
 use Ki\Common\Uploader\UploadFailedException;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Uploader {
+class Uploader implements UploaderInterface {
 
 	/**
 	 * Default upload path

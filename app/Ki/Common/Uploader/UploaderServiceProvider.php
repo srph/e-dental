@@ -12,7 +12,7 @@ class UploaderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bind('UploaderInterface', function($app)
+		$this->app->bind('Ki\Common\Uploader\UploaderInterface', function($app)
 		{
 			return new Uploader;
 		});
