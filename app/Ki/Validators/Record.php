@@ -2,7 +2,7 @@
 
 use Ki\Common\AbstractValidator;
 
-class Record extends AbstractValidator{
+class Record extends AbstractValidator {
 
 	public $rules = [
 		'user_id'		=> 'required',

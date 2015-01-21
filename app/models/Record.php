@@ -3,7 +3,7 @@
 class Record extends Eloquent {
 
 	/**
-	 *
+	 * Columns fillable by the model
 	 */
 	protected $fillable = array(
 		'user_id',
@@ -13,7 +13,7 @@ class Record extends Eloquent {
 		'first_name',
 		'middle_name',
 		'last_name',
-		'full_name',
+		'full_name'
 	);
 
 	/**

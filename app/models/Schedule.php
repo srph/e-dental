@@ -3,6 +3,14 @@
 class Schedule extends Eloquent {
 
 	/**
+	 * Columns fillable by this model
+	 */
+	protected $fillable = array(
+		'record_id',
+		'appointed_at'
+	);
+
+	/**
 	 * Add automatically `appointed_at` converted-to-Carbon properties
 	 */
 	public function getDates()

@@ -19,7 +19,8 @@ Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
 	 */
 	Route::group([
 		'namespace' => 'Administrator',
-		'prefix' => 'admin'
+		'prefix' => 'admin',
+		'before' => 'admin'
 	], function()
 	{
 		Route::resource('users', 'UsersController');

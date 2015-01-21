@@ -3,6 +3,16 @@
 class Service extends Eloquent {
 
 	/**
+	 * Columns fillable by this model
+	 */
+	protected $fillable = ['name'];
+
+	/**
+	 * Disable the model's timestamp feature
+	 */
+	public $timestamps = false;
+
+	/**
 	 *
 	 */
 	public function records()
