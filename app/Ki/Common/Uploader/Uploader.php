@@ -23,10 +23,12 @@ class Uploader implements UploaderInterface {
 		$filename = $this->getFilename($extension);
 		$path = $this->getPath($path);
 
-		if ( !$file->move($path, $filename) )
+		if ( $file->move($path, $filename) == false )
 		{
 			throw new UploadFailedException('Unable to upload the file');
 		}
+
+		return $filename;
 	}
 
 	/**
@@ -47,9 +49,10 @@ class Uploader implements UploaderInterface {
 	 */
 	protected function getFilename($extension, $count = 25)
 	{
-		$string = \str_rand($count);
+		$now = strtotime( date('Y-m-d') );
+		$string = \str_random($count);
 
-		return "{$string}.{$extension}";
+		return "{$string}-{$now}.{$extension}";
 	}
 
 }

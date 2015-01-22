@@ -64,12 +64,13 @@ class SettingsController extends \BaseController {
 
 	public function profile()
 	{
-		$input = Input::only([
+		$input = $this->input([
 			'first_name',
 			'middle_name',
 			'last_name',
 			'address',
-			'birthdate'
+			'birthdate',
+			'avatar'
 		]);
 
 		try
@@ -78,8 +79,9 @@ class SettingsController extends \BaseController {
 		}
 		catch(ValidationException $e)
 		{
-			Session::flash('settings.profile.error', $e->getMessage());
-			return Redirect::back();
+			return $this
+				->flash('settings.profile.error', $e->getMessage())
+				->back();
 		}
 
 		$profile = Auth::user()->profile;
@@ -87,17 +89,9 @@ class SettingsController extends \BaseController {
 		$profile->middle_name = $input['middle_name'];
 		$profile->last_name = $input['last_name'];
 		$profile->full_name = "{$input['first_name']} {$input['middle_name']} {$input['last_name']}";
-
-		if ( Input::has('address') )
-		{
-			$profile->address = $input['address'];
-		}
-
-		if ( Input::has('birthdate') )
-		{
-			$profile->birthdate = date('Y-m-d', strtotime($input['birthdate']));
-		}
-
+		$profile->address 	= Input::has('address') ? $input['address'] : null;
+		$profile->birthdate = Input::has('birthdate') ? date('Y-m-d', strtotime($input['birthdate'])) : null;
+		if(Input::hasFile('avatar')) $profile->avatar 	= $this->uploader->upload($input['avatar']);
 		$profile->save();
 
 		$message = 'Your profile has been successfully updated!';

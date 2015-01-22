@@ -57,8 +57,17 @@
 		</div>
 	@endif
 
-	<form action="{{ route('dashboard.you.settings.profile') }}" method="POST" style="width: 600px;">
+	<form action="{{ route('dashboard.you.settings.profile') }}" method="POST" style="width: 600px;" enctype="multipart/form-data">
 		<input type="hidden" value="PUT" name="_method">
+
+		<div class="clearfix" style="margin-bottom: 20px;">
+			<img src="{{ $profile->avatar }}" style="height: 100px; width: 100px; border-radius: 15px;" class="pull-left">
+			<div style="width: 225px; margin-left: 25px; margin-top: 20px;" class="pull-left">
+				<input type="file" class="form-control" name="avatar">
+
+				<h4 class="text-center"> <small> Select a file to replace the current </small> </h4>
+			</div>
+		</div>
 
 		<div class="row form-group">
 			<div class="col-md-4">
@@ -86,7 +95,7 @@
 			<div class="col-md-4">
 				<label> Birthdate </label>
 				<div class="input-group">
-					<input type="text" class="form-control datepicker" placeholder="11-23-1996" name="birthdate" value="{{ $profile->birthdate->format('d/m/Y') }}">
+					<input type="text" class="form-control datepicker" placeholder="11-23-1996" name="birthdate" value="{{ $profile->birthdate ? $profile->birthdate->format('d-m-Y') : null }}">
 
 					<span class="input-group-addon">
 						<i class="ion-calendar"></i>

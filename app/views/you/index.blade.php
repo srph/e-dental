@@ -13,7 +13,17 @@
 		</div>
 	@endif
 
-	<img src="{{ $profile->avatar }}" style="width: 72px; height: 72px; border-radius: 50%;">
+	<div class="clearfix">
+		<img src="{{ $profile->avatar }}" style="width: 72px; height: 72px; border-radius: 15px; margin-right: 20px;" class="pull-left">
+		<div class="pull-left">
+			<h5> {{ $profile->full_name }} <small> ({{ $user->username }}) </small> </h5>
+
+			<h6>
+				<i class="ion-android-calendar"></i>
+				{{ ( !is_null($profile->birthdate ) ) ? date('m d, Y', $profile->birthdate->timestamp) : 'Not set' }}
+			</h6>
+		</div>
+	</div>
 
 	<hr>
 
