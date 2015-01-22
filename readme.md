@@ -1,5 +1,8 @@
 ## E-Dental
 
+[![Preview](https://cloud.githubusercontent.com/assets/5093058/5860329/a0056576-a29b-11e4-844d-39839ec50b9d.png)](https://cloud.githubusercontent.com/assets/5093058/5860329/a0056576-a29b-11e4-844d-39839ec50b9d.png)
+
+
 [![Author | Shields.io](http://img.shields.io/badge/author-%40srph-blue.svg?style=flat-square)](http://twitter.com/_srph)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
@@ -24,13 +27,13 @@ Plus, do not read this shit for Best Practices. Thanks.
 
 [1] **Get a local copy**. Or clone it with Git.
 
-```
+```bash
 $ git clone https://github.com/srph/e-dental
 ```
 
-[2]  Update dependencies
+[2]  **Update dependencies**
 
-```
+```bash
 $ cd /path/to/e-dental # switch the current direct to the cloned repository
 
 # Install PHP dependencies
@@ -40,11 +43,33 @@ $ composer install
 $ bower install
 ```
 
-[3] Installing the database
+[3] **Installing the database**
 
-Create a database, first.
+Create a database on MySQL first.
 
+```bash
+mysql -u root -p
+CREATE DATABASE `edms`;
 ```
+
+And then, proceed to the configurations located at ```app/config/database.php```.
+
+```php
+// ...
+	'connections' => array(
+		'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'edms', // YOUR PREFERRED DB NAME
+			'username'  => 'forge', // YOUR MYSQL USERNAME
+			'password'  => 'forge', // YOUR MYSQL PASS
+			/** reduced for bevity */
+		),
+```
+
+Run the migrations.
+
+```bash
 # on your root folder
 $ php artisan migrate # run the table migration
 $ php artisan db:seed # seed data
