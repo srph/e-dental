@@ -5,22 +5,23 @@
 @stop
 
 @section('sub-content')
-	<h1> Dashboard </h1>
+	<h1 style="margin-top: 0; margin-bottom: 15px;"> Dashboard </h1>
 
 	@if ( Session::has('authentication.success') )
 		<div class="alert alet-success">
 			Welcome back, {{ $profile->full_name }}. 
 		</div>
 	@endif
+
+	<img src="{{ $profile->avatar }}" style="width: 72px; height: 72px; border-radius: 50%;">
+
+	<hr>
+
 	<div class="alert alert-info">
 		So far, you have appointed
 		<strong>{{ $user->schedules->count() }}</strong> schedules, and
 		<strong>{{ $user->records->count() }}</strong> records.
 	</div>
-
-	<img src="{{ $profile->avatar }}" style="width: 72px; height: 72px; border-radius: 50%;">
-
-	<hr>
 
 	<div class="row">
 		<div class="col-md-6">
@@ -45,11 +46,10 @@
 				</tbody>
 			</table>
 
-			<a href="#" class="btn btn-primary"> Check all records </a>
+			<a href="{{ route('dashboard.you.records.index') }}" class="btn btn-primary"> Check all records </a>
 			@else
 			<div class="alert alert-info">
-				Oops, it seems that you haven't made a schedule yet.
-				Why don't you <a href="#" class="alert-link">appoint one</a>?
+				Oops, it seems that you have no records yet.
 			</div>
 			@endif
 		</div>
@@ -75,10 +75,11 @@
 				</tbody>
 			</table>
 
-			<a href="#" class="btn btn-primary"> Check all schedules </a>
+			<a href="{{ route('dashboard.you.schedules.index') }}" class="btn btn-primary"> Check all schedules </a>
 			@else
 			<div class="alert alert-info">
-				Oops, it seems that you have no records yet.
+				Oops, it seems that you haven't made a schedule yet.
+				Why don't you <a href="#" class="alert-link">appoint one</a>?
 			</div>
 			@endif
 		</div>
