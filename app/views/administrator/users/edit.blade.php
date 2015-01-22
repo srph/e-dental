@@ -128,7 +128,7 @@
 @section('sub-scripts')
 	<script>
 		+function($) {
-			$('.datepicker').datepicker({ format: 'mm-dd-yy' });
+			$('.datepicker').datepicker({ format: 'dd-mm-yy' });
 		}(jQuery);
 	</script>
 @stop

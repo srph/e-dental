@@ -49,7 +49,7 @@ class SchedulesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only([
+		$input = $this->input([
 			'appointed_at',
 			'user_id'		
 		]);

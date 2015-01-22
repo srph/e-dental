@@ -20,7 +20,10 @@ class RecordsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$records = Auth::user()->records()->paginate(20);
+		$records = Auth::user()
+			->records()
+			->orderBy('id', 'desc')
+			->paginate(20);
 
 		return View::make('you.records.index', compact('records'));
 	}

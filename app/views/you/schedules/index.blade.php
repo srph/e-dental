@@ -14,6 +14,12 @@
 		</a>
 	</div>
 
+	@if( Session::has('you.schedules.create.success') )
+		<div class="alert alert-success">
+			{{ Session::get('you.schedules.create.success') }}
+		</div>
+	@endif
+
 	@if ( count($schedules) )
 	<table class="table table-hover">
 		<thead>
