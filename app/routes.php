@@ -24,6 +24,8 @@ Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
 	], function()
 	{
 		Route::resource('users', 'UsersController');
+		Route::put('users/{id}/profile', ['uses' => 'UsersController@updateProfile', 'as' => 'dashboard.admin.users.profile.update']);
+
 		Route::resource('records', 'RecordsController');
 		Route::resource('schedules', 'SchedulesController');
 	});

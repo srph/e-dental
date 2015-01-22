@@ -107,6 +107,7 @@ class UsersController extends \BaseController {
 
 		// Let's create the User model from the input
 		$user = new User;
+		$user->username = $input['username'];
 		$user->email 	= $input['email'];
 		$user->password = $input['password'];
 
@@ -128,7 +129,7 @@ class UsersController extends \BaseController {
 
 		return $this
 			->flash('admin.user.create.success', $message)
-			->redirect('dashboard.you.settings.index');
+			->redirect('dashboard.admin.users.index');
 	}
 
 
@@ -153,8 +154,9 @@ class UsersController extends \BaseController {
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
+		$profile = $user->profile;
 
-		return $this->view('administrator.users.edit', compact('user'));
+		return $this->view('administrator.users.edit', compact('user', 'profile'));
 	}
 
 
@@ -168,29 +170,80 @@ class UsersController extends \BaseController {
 	{
 		// Sanitize the input fields
 		// to be used within this request
-		$input = $this->input(['username', 'password', 'email']);
+		$input = $this->input(['username', 'password', 'password_confirmation', 'email']);
 
 		try
 		{
-			$this->validator->validate($input);
+			$this->userValidator->validate($input, ['password' => 'min:5|confirmed']);
 		}
-		catch(Exception $e)
+		catch(ValidationException $e)
 		{
 			$key = 'admin.users.update.error';
 
-			$this
-				->flash($key, $e->getMessages())
+			return $this
+				->flash($key, $e->getMessage())
 				->back();
 		}
 
 		$user = User::findOrFail($id);
 		$user->username = $input['username'];
-		$user->password = $input['password'];
 		$user->email 	= $input['email'];
+		if ( Input::has('password') ) $user->password = $input['password'];
+		$user->save();
 
-		return $this->back();
+		$message = 'User has been successfullly updated!';
+
+		return $this
+			->flash('admin.users.update.success', $message)
+			->back();
 	}
 
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param	int	$id
+	 * @return Response
+	 */
+	public function updateProfile($id)
+	{
+		// Sanitize the input fields
+		// to be used within this request
+		$input = $this->input([
+			'first_name',
+			'middle_name',
+			'last_name',
+			'address',
+			'birthdate',
+			'avatar'
+		]);
+
+		try
+		{
+			$this->profileValidator->validate($input);
+		}
+		catch(ValidationException $e)
+		{
+			return $this
+				->flash('admin.profile.update.error', $e->getMessage())
+				->back();
+		}
+
+		$profile = Profile::find($id);
+		$profile->first_name = $input['first_name'];
+		$profile->middle_name = $input['middle_name'];
+		$profile->last_name = $input['last_name'];
+		$profile->full_name = "{$input['first_name']} {$input['middle_name']} {$input['last_name']}";
+		$profile->address 	= Input::has('address') ? $input['address'] : null;
+		$profile->birthdate = Input::has('birthdate') ? date('Y-m-d', strtotime($input['birthdate'])) : null;
+		if(Input::hasFile('avatar')) $profile->avatar 	= $this->uploader->upload($input['avatar']);
+		$profile->save();
+
+		$message = 'Your profile has been successfully updated!';
+
+		return $this
+			->flash('admin.profile.update.success', $message)
+			->back();
+	}
 
 	/**
 	 * Remove the specified resource from storage.

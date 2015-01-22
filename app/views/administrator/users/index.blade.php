@@ -19,12 +19,6 @@
 		</div>
 	@endif
 
-	@if ( Session::has('admin.user.update.success') )
-		<div class="alert alert-success">
-			{{ Session::get('admin.user.update.success') }}
-		</div>
-	@endif
-
 	@if ( Session::has('admin.users.delete') )
 		<div class="alert alert-success">
 			{{ Session::get('admin.users.delete') }}

@@ -7,7 +7,7 @@
 @section('sub-content')
 	<h1 style="margin-bottom: 25px;"> Create New User </h1>
 
-	<form action="{{ route('dashboard.admin.users.store') }}" method="POST" style="width: 600px;">
+	<form action="{{ route('dashboard.admin.users.store') }}" method="POST" style="width: 600px;" enctype="multipart/form-data">
 
 		<h4> Account Details </h4>
 
@@ -55,6 +55,15 @@
 				{{ Session::get('admin.user.create.profile.error') }}
 			</div>
 		@endif
+
+		<div class="clearfix" style="margin-bottom: 20px;">
+			<img src="{{ asset('uploads/tuzki.png') }}" style="height: 100px; width: 100px; border-radius: 15px;" class="pull-left">
+			<div style="width: 225px; margin-left: 25px; margin-top: 20px;" class="pull-left">
+				<input type="file" class="form-control" name="avatar">
+
+				<h4 class="text-center"> <small> Not required. </small> </h4>
+			</div>
+		</div>
 
 		<div class="row form-group">
 			<div class="col-md-4">
