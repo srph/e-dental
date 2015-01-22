@@ -19,9 +19,9 @@ class Profile extends Eloquent {
 	/**
 	 * Transform the avatar attribute to a link
 	 */
-	public function getAvatarAttribute()
+	public function getAvatarAttribute($value)
 	{
-		return url("uploads/{$this->avatar}");
+		return asset("uploads/{$value}");
 	}
 
 	/**
