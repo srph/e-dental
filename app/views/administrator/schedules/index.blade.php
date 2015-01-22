@@ -33,13 +33,13 @@
 		<tbody>
 			@foreach($schedules as $schedule)
 				<tr>
-					<td> {{ $schedule->id }}  </td>
-					<td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->id }}  </td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}">
 						{{ $schedule->user->username }}
 						({{ $schedule->user->profile->full_name }})
 					</td>
-					<td> {{ $schedule->appointed_at->diffForHumans() }} </td>
-					<td> {{ $schedule->created_at->diffForHumans() }} </td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->appointed_at->diffForHumans() }} </td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->created_at->diffForHumans() }} </td>
 				</tr>
 			@endforeach
 		</tbody>

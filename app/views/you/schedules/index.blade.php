@@ -5,7 +5,14 @@
 @stop
 
 @section('sub-content')
-	<h1> Your Schedules </h1>
+	<div class="clearfix">
+		<h1 class="pull-left" style="margin-top: 0; margin-bottom: 20px;"> Your Schedules </h1>
+
+		<a href="{{ route('dashboard.you.schedules.create') }}" class="btn btn-info pull-right">
+			<i class="ion-android-calendar"></i>
+			Set An Appointment
+		</a>
+	</div>
 
 	@if ( count($schedules) )
 	<table class="table table-hover">
@@ -20,13 +27,9 @@
 		<tbody>
 			@foreach($schedules as $schedule)
 				<tr>
-					<td> {{ $schedule->id }}  </td>
-					<td>
-						{{ $schedule->user->username }}
-						({{ $schedule->user->profile->full_name }})
-					</td>
-					<td> {{ $schedule->appointed_at->diffForHumans() }} </td>
-					<td> {{ $schedule->created_at->diffForHumans() }} </td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->id }}  </td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->appointed_at->diffForHumans() }} </td>
+					<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->created_at->diffForHumans() }} </td>
 				</tr>
 			@endforeach
 		</tbody>

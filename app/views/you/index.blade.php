@@ -68,8 +68,8 @@
 				<tbody>
 					@foreach($schedules as $schedule)
 					<tr>
-						<td> {{ $schedule->id }} </td>
-						<td> {{ $schedule->appointed_at->diffForHumans() }} </td>
+						<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->id }} </td>
+						<td class="{{ $schedule->isDone() ? 'success' : '' }}"> {{ $schedule->appointed_at->diffForHumans() }} </td>
 					</tr>
 					@endforeach
 				</tbody>

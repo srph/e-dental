@@ -77,4 +77,14 @@ class BaseController extends Controller {
 	{
 		return View::make($view, $data ?: []);
 	}
+
+	/**
+	 * Auth stuff
+	 *
+	 * @return Auth|Model
+	 */
+	protected function auth()
+	{
+		return Auth::user();
+	}
 }

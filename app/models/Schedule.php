@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Schedule extends Eloquent {
 
 	/**
@@ -44,5 +46,18 @@ class Schedule extends Eloquent {
 	public function hasRecord()
 	{
 		return ! is_null($this->record);
+	}
+
+	/**
+	 * Checks if the appointment is done by
+	 * checking the current date
+	 *
+	 * @return boolean
+	 */
+	public function isDone()
+	{
+		$now = Carbon::now();
+
+		return $now->timestamp - $this->appointed_at->timestamp >= 0;
 	}
 }

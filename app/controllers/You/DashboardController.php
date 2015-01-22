@@ -13,8 +13,9 @@ class DashboardController extends \BaseController {
 		$schedules = $user->schedules()->take(5)->get();
 		$records = $user->records()->take(5)->get();
 
-		return View::make('you.index',
-			compact('user', 'schedules', 'records', 'profile'));
+		$data = compact('user', 'schedules', 'records', 'profile');
+
+		return $this->view('you.index', $data);
 	}
 
 }
