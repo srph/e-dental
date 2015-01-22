@@ -23,6 +23,7 @@ class CreateProfilesTable extends Migration {
 			$table->string('address')->nullable();
 			$table->timestamp('birthdate')->nullable();
 			$table->string('avatar')->default('tuzki.png');
+			$table->string('contact_no')->nullable();
 			$table->timestamps();
 		});
 	}

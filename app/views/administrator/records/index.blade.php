@@ -24,6 +24,7 @@
 		<thead>
 			<tr>
 				<td> # </td>
+				<td> Patient </td>
 				<td> Doctor </td>
 				<td> Service </td>
 				<td> Scheduled Date </td>
@@ -34,6 +35,7 @@
 			@foreach($records as $record)
 				<tr>
 					<td> {{ $record->id }}  </td>
+					<td> {{ $record->full_name }} ({{ ($record->user->username) }}) </td>
 					<td> {{ $record->doctor->name }} </td>
 					<td> {{ $record->service->name }} </td>
 					<td>

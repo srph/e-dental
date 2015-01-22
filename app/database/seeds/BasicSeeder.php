@@ -56,7 +56,8 @@ class BasicSeeder extends Seeder {
 				'last_name'		=> $ln,
 				'full_name'		=> $full,
 				'address'		=> $this->f->address,
-				'birthdate'		=> date('Y-m-d')
+				'birthdate'		=> date('Y-m-d'),
+				'contact_no'	=> $this->f->phoneNumber
 			]);
 		}
 	}
@@ -81,7 +82,7 @@ class BasicSeeder extends Seeder {
 				'first_name'	=> $profile->first_name,
 				'middle_name'	=> $profile->middle_name,
 				'last_name'		=> $profile->last_name,
-				'full_name'		=> $profile->full_name,
+				'full_name'		=> $profile->full_name
 			]);
 		}
 	}

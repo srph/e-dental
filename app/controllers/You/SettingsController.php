@@ -70,7 +70,8 @@ class SettingsController extends \BaseController {
 			'last_name',
 			'address',
 			'birthdate',
-			'avatar'
+			'avatar',
+			'contact_no'
 		]);
 
 		try
@@ -89,6 +90,7 @@ class SettingsController extends \BaseController {
 		$profile->middle_name = $input['middle_name'];
 		$profile->last_name = $input['last_name'];
 		$profile->full_name = "{$input['first_name']} {$input['middle_name']} {$input['last_name']}";
+		$profile->contact_no = $input['contact_no'];
 		$profile->address 	= Input::has('address') ? $input['address'] : null;
 		$profile->birthdate = Input::has('birthdate') ? date('Y-m-d', strtotime($input['birthdate'])) : null;
 		if(Input::hasFile('avatar')) $profile->avatar 	= $this->uploader->upload($input['avatar']);

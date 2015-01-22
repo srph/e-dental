@@ -65,37 +65,44 @@
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<div class="col-md-4">
-				<label> First Name </label>
-				<input type="text" name="first_name" class="form-control" placeholder="Jealian" value="{{Input::old('first_name')}}">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label> First Name </label>
+					<input type="text" name="first_name" class="form-control" placeholder="Jealian" value="{{ Input::old('first_name') }}">
+				</div>
+
+				<div class="form-group">
+					<label> Middle Name </label>
+					<input type="text" name="middle_name" class="form-control" placeholder="Enriquez" value="{{ Input::old('middle_name') }}">
+				</div>
+
+				<div class="form-group">
+					<label> Last Name </label>
+					<input type="text" name="last_name" class="form-control" placeholder="Menor" value="{{ Input::old('last_name') }}">
+				</div>
 			</div>
 
-			<div class="col-md-4">
-				<label> Middle Name </label>
-				<input type="text" name="middle_name" class="form-control" placeholder="Enriquez" value="{{Input::old('middle_name')}}">
-			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label> Address </label>
+					<input type="text" class="form-control" placeholder="523 Concha St." name="address" value="{{ Input::old('address') }}">
+				</div>
 
-			<div class="col-md-4">
-				<label> Last Name </label>
-				<input type="text" name="last_name" class="form-control" placeholder="Menor" value="{{Input::old('last_name')}}">
-			</div>
-		</div>
+				<div class="form-group">
+					<label> Birthdate </label>
+					<div class="input-group">
+						<input type="text" class="form-control datepicker" placeholder="23-11-1996" name="birthdate" value="{{ Input::old('birthdate') }}">
 
-		<div class="row form-group">
-			<div class="col-md-8">
-				<label> Address </label>
-				<input type="text" class="form-control" placeholder="523 Concha St." name="address" value="{{Input::old('address')}}">
-			</div>
+						<span class="input-group-addon">
+							<i class="ion-calendar"></i>
+						</span>
+					</div>
+				</div>
 
-			<div class="col-md-4">
-				<label> Birthdate </label>
-				<div class="input-group">
-					<input type="text" class="form-control datepicker" placeholder="11-23-1996" name="birthdate" value="{{Input::old('birthdate')}}">
-
-					<span class="input-group-addon">
-						<i class="ion-calendar"></i>
-					</span>
+				<div class="form-group">
+					<label> Contact # </label>
+					<input type="text" class="form-control" placeholder="+(63)916-441-7383" name="contact_no" value="{{ Input::old('contact_no') }}">
 				</div>
 			</div>
 		</div>
@@ -110,7 +117,7 @@
 @section('sub-scripts')
 	<script>
 		+function($) {
-			$('.datepicker').datepicker({ format: 'dd-mm-yy' });
+			$('.datepicker').datepicker({ format: 'dd-mm-yyyy' });
 		}(jQuery);
 	</script>
 @stop

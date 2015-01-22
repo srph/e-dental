@@ -13,7 +13,8 @@ class Profile extends Eloquent {
 		'full_name',
 		'address',
 		'birthdate',
-		'avatar'
+		'avatar',
+		'contact_no'
 	);
 
 	/**

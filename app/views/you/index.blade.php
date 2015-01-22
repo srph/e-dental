@@ -21,6 +21,11 @@
 			<h6>
 				<i class="ion-android-calendar"></i>
 				{{ ( !is_null($profile->birthdate ) ) ? date('m d, Y', $profile->birthdate->timestamp) : 'Not set' }}
+
+				<span style="margin-left: 5px; margin-right: 5px"> / </span>
+
+				<i class="ion-ios-telephone"></i>
+				{{  $profile->contact_no ?: 'Not set' }}
 			</h6>
 		</div>
 	</div>

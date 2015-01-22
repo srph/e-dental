@@ -81,8 +81,8 @@ class RecordsController extends \BaseController {
 		// Let's create the record
 		$record = new Record;
 		$record->user_id 		= $input['user_id'];
-		$record->service_id 	= $input['user_id'];
-		$record->docotor_id 	= $input['user_id'];
+		$record->service_id 	= $input['service_id'];
+		$record->doctor_id 		= $input['doctor_id'];
 		$record->first_name		= $user->profile->first_name;
 		$record->middle_name	= $user->profile->middle_name;
 		$record->last_name		= $user->profile->last_name;
