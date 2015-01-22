@@ -10,9 +10,9 @@ An EDMS [quick work] for Jealian's (:heart:) project on IT22-FA3, built with Lar
 
 ### Author's Note
 
-Upon creation, I was given ~7 hours to write the code while dealing with unfamiliarity (I haven't successively wrote PHP code for months) with code and table structure, and business logic [while considering the timeline and student's skills]. I am not trying to consent students to pay for their projects, but this was made due to the problems that arose.
+Upon creation, I was given ~7 hours to write the code while dealing with unfamiliarity (I haven't successively wrote PHP code for months) with code and table structure, and business logic [while considering the timeline and student's skills]. I am not trying to consent students to pay for their projects, but this was *commissioned* due to various confidential issues.
 
-Plus, do not read this shit for Best Practices. Thanks.
+Plus, do not read this shit for *Best Practices™* . Thanks.
 
 ## Building
 
