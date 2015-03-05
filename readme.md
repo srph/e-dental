@@ -6,11 +6,13 @@
 [![Author | Shields.io](http://img.shields.io/badge/author-%40srph-blue.svg?style=flat-square)](http://twitter.com/_srph)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-An EDMS [quick work] for Jealian's (:heart:) project on IT22-FA3, built with Laravel.
+An EDMS [quick work] for a project on IT22-FA3, built with Laravel.
 
 ### Author's Note
 
 Upon creation, I was given ~7 hours to write the code while dealing with unfamiliarity (I haven't successively wrote PHP code for months) with code and table structure, and business logic [while considering the timeline and student's skills]. I am not trying to consent students to pay for their projects, but this was *commissioned* due to various confidential issues.
+
+I regret for not using the *Repository Pattern*.
 
 Plus, do not read this shit for *Best Practices™* . Thanks.
 
