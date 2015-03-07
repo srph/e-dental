@@ -54,10 +54,38 @@ mysql -u root -p
 CREATE DATABASE `edms`;
 ```
 
-And then, proceed to the configurations located at ```app/config/database.php```.
+And then, register your machine to the list of detected environment at `bootstrap/start.php`:
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Detect The Application Environment
+|--------------------------------------------------------------------------
+|
+| Laravel takes a dead simple approach to your application environments
+| so you can just specify a machine name for the host that matches a
+| given environment, then we will automatically detect it for you.
+|
+*/
+$env = $app->detectEnvironment(array(
+	// Other environment..
+	
+	'your-environment-name' => array('your-machine-name'),
+));
+```
+
+\* Replace `your-environment-name` with any unique name (this will be used to identify which environment (or configurations) to use), and `your-machine-name` of course the computer name.
+
+Proceed to the configurations located at `app/config/` to create your own folder (the same as your environment name). And then create `database.php` on the same folder (now, you have `app/config/myMachine/database.php`).
+
+Paste this in:
 
 ```php
 // ...
+<?php
+return array(
+	'default' => 'mysql',
+	
 	'connections' => array(
 		'mysql' => array(
 			'driver'    => 'mysql',
@@ -67,6 +95,8 @@ And then, proceed to the configurations located at ```app/config/database.php```
 			'password'  => 'forge', // YOUR MYSQL PASS
 			/** reduced for bevity */
 		),
+	)
+);
 ```
 
 Run the migrations.
