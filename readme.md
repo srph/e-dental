@@ -81,7 +81,6 @@ Proceed to the configurations located at `app/config/` to create your own folder
 Paste this in:
 
 ```php
-// ...
 <?php
 return array(
 	'default' => 'mysql',
