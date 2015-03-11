@@ -1,20 +1,10 @@
-## E-Dental
+## E-Dental [![Author | Shields.io](http://img.shields.io/badge/author-%40srph-blue.svg?style=flat-square)](http://twitter.com/_srph) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 [![Preview](https://cloud.githubusercontent.com/assets/5093058/5860329/a0056576-a29b-11e4-844d-39839ec50b9d.png)](https://cloud.githubusercontent.com/assets/5093058/5860329/a0056576-a29b-11e4-844d-39839ec50b9d.png)
 
+A quickie for a project on IT22-FA3, built with Laravel.
 
-[![Author | Shields.io](http://img.shields.io/badge/author-%40srph-blue.svg?style=flat-square)](http://twitter.com/_srph)
-[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-
-An EDMS [quick work] for a project on IT22-FA3, built with Laravel.
-
-### Author's Note
-
-Upon creation, I was given ~7 hours to write the code while dealing with unfamiliarity (I haven't successively wrote PHP code for months) with code and table structure, and business logic [while considering the timeline and student's skills]. I am not trying to consent students to pay for their projects, but this was *commissioned* due to various confidential issues.
-
-I regret for not using the *Repository Pattern*.
-
-Plus, do not read this shit for *Best Practices™* . Thanks.
+I regret for not using the *Repository Pattern*. Plus, do not read this shit for *Best Practices™* . Thanks.
 
 ## Building
 
@@ -27,17 +17,18 @@ Plus, do not read this shit for *Best Practices™* . Thanks.
 
 ### Installing
 
-[1] **Get a local copy**. Or clone it with Git.
+[1] Clone the repository.
 
 ```bash
-$ git clone https://github.com/srph/e-dental
+$ git clone https://github.com/srph/e-dental.git
+
+# switch the current direct to the cloned repository
+$ cd e-dental
 ```
 
 [2]  **Update dependencies**
 
 ```bash
-$ cd /path/to/e-dental # switch the current direct to the cloned repository
-
 # Install PHP dependencies
 $ composer install
 
