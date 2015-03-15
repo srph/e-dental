@@ -4,7 +4,7 @@
 
 A quickie for a project on IT22-FA3, built with Laravel.
 
-I regret for not using the *Repository Pattern*. Plus, do not read this shit for *Best Practices™* . Thanks.
+**As of Mar 15, 2015**, this project has been [rewritten from scratch](https://github.com/srph/e-dental-re).
 
 ## Building
 
@@ -96,6 +96,13 @@ Run the migrations.
 $ php artisan migrate # run the table migration
 $ php artisan db:seed # seed data
 ```
+
+## Limitations
+
+- Bad UX overall.
+- Bad practices all over the place.
+
+Do not read this shit for *Best Practices™* . Thanks.
 
 ## Acknowledgement
 
